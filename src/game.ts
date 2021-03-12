@@ -2,6 +2,12 @@ import 'phaser';
 
 import Config from './config';
 
+export class Game extends Phaser.Game{
+    constructor(config: Phaser.Types.Core.GameConfig){
+        super(config);
+    }
+}
+
 window.addEventListener('load',() => {
-    const game = new Phaser.Game(Config);
+    const game = new Game(Config);
 })

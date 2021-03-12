@@ -7,12 +7,12 @@ export default class Nivel1 extends Phaser.Scene
 
     preload ()
     {
-        this.load.image('logo', 'assets/phaser3-logo.png');
+       
     }
 
     create ()
     {
-        const logo = this.add.image(400, 70, 'logo');
+        const logo = this.add.image(400, 70, 'logo1');
         
     }
 }
