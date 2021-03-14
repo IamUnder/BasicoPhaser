@@ -33,7 +33,7 @@ export default class Preload extends Phaser.Scene{
         this.load.on(
             'complete',
             function() {
-                this.scene.start('Nivel1');
+                this.scene.start('Menu');
             },
             this
         );
