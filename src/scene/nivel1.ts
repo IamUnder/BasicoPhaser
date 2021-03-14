@@ -4,6 +4,7 @@ export default class Nivel1 extends Phaser.Scene
     private witdh: number;
     private height: number;
     private hp: number;
+    private points: number;
 
     constructor ()
     {
@@ -14,6 +15,7 @@ export default class Nivel1 extends Phaser.Scene
         this.witdh = this.cameras.main.width;
         this.height = this.cameras.main.height;
         this.hp = 3;
+        this.points = 0;
     }
 
     preload ()
@@ -43,6 +45,19 @@ export default class Nivel1 extends Phaser.Scene
             this.hp --;
             this.registry.set('hp',this.hp);
             this.events.emit('changehp');
-        })
+        });
+
+        const pointsTxT: Phaser.GameObjects.Text = this.add.text(
+            this.witdh/2,
+            this.height/2 + 100,
+            'Points ++',
+            {fontSize:'32px',color:'#FFFFFF'}
+        ).setInteractive();
+
+        pointsTxT.on('pointerdown', () =>{
+            this.points ++;
+            this.registry.set('points', this.points);
+            this.events.emit('changepoints');
+        });
     }
 }
