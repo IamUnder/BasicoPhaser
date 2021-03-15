@@ -1,3 +1,5 @@
+import Constant from '../constant';
+
 export default class HUD extends Phaser.Scene{
 
     private hpTxT: Phaser.GameObjects.Text;
@@ -7,7 +9,7 @@ export default class HUD extends Phaser.Scene{
     private height: number;
 
     constructor(){
-        super('HUD');
+        super(Constant.SCENE.HUD);
     }
 
     init(){
@@ -17,9 +19,9 @@ export default class HUD extends Phaser.Scene{
 
     create(): void{
 
-        const nivel1: Phaser.Scene = this.scene.get('Nivel1');
-        nivel1.events.on('changehp', this.updatehp , this);
-        nivel1.events.on('changepoints', this.updatepoints , this);
+        const nivel1: Phaser.Scene = this.scene.get(Constant.SCENE.NIVEL1);
+        nivel1.events.on(Constant.EVENTOS.HP, this.updatehp , this);
+        nivel1.events.on(Constant.EVENTOS.POINTS, this.updatepoints , this);
 
         this.hpTxT = this.add.text(
             20,
@@ -37,11 +39,11 @@ export default class HUD extends Phaser.Scene{
     }
 
     private updatehp(): void{
-        this.hpTxT.text = 'HP: ' + this.registry.get('hp');
+        this.hpTxT.text = 'HP: ' + this.registry.get(Constant.REGIS.HP);
     }
 
     private updatepoints(): void{
-        this.pointsTxT.text = Phaser.Utils.String.Pad(this.registry.get('points'), 3 , '0', 1);
+        this.pointsTxT.text = Phaser.Utils.String.Pad(this.registry.get(Constant.REGIS.POINTS), 3 , '0', 1);
     }
 
 }

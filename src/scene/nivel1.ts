@@ -1,3 +1,5 @@
+import Constant from '../constant';
+
 export default class Nivel1 extends Phaser.Scene
 {
 
@@ -8,7 +10,7 @@ export default class Nivel1 extends Phaser.Scene
 
     constructor ()
     {
-        super('Nivel1');
+        super(Constant.SCENE.NIVEL1);
     }
 
     init(){
@@ -30,7 +32,7 @@ export default class Nivel1 extends Phaser.Scene
         const jugarTxT: Phaser.GameObjects.Text = this.add.text(
             50,
             this.height/2,
-            'NIVEL 1',
+            Constant.SCENE.NIVEL1,
             {fontSize:'32px',color:'#FFFFFF'}
         );
 
@@ -43,8 +45,8 @@ export default class Nivel1 extends Phaser.Scene
 
         hpTxT.on('pointerdown', ()=>{
             this.hp --;
-            this.registry.set('hp',this.hp);
-            this.events.emit('changehp');
+            this.registry.set(Constant.REGIS.HP,this.hp);
+            this.events.emit(Constant.EVENTOS.HP);
         });
 
         const pointsTxT: Phaser.GameObjects.Text = this.add.text(
@@ -56,8 +58,8 @@ export default class Nivel1 extends Phaser.Scene
 
         pointsTxT.on('pointerdown', () =>{
             this.points ++;
-            this.registry.set('points', this.points);
-            this.events.emit('changepoints');
+            this.registry.set(Constant.REGIS.POINTS, this.points);
+            this.events.emit(Constant.EVENTOS.POINTS);
         });
     }
 }

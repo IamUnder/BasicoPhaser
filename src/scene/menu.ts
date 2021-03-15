@@ -1,10 +1,12 @@
+import Constant from "../constant";
+
 export default class Menu extends Phaser.Scene{
 
     private witdh: number;
     private height: number;
 
     constructor(){
-        super('Menu')
+        super(Constant.SCENE.MENU)
     }
 
     init(){
@@ -18,7 +20,7 @@ export default class Menu extends Phaser.Scene{
         const jugarTxT: Phaser.GameObjects.Text = this.add.text(
             50,
             this.height/2,
-            'JUGAR',
+            Constant.MENU.JUGAR,
             {fontSize:'32px',color:'#FFFFFF'}
         ).setInteractive();
 
@@ -30,8 +32,8 @@ export default class Menu extends Phaser.Scene{
     changeScene(jugarTxT: Phaser.GameObjects.Text, scene: string) {
         jugarTxT.on('pointerdown', () => {
             this.scene.start(scene);
-            this.scene.start('HUD');
-            this.scene.bringToTop('HUD');
+            this.scene.start(Constant.SCENE.HUD);
+            this.scene.bringToTop(Constant.SCENE.HUD);
         });
     }
 }
