@@ -8,6 +8,10 @@ export default class Nivel1 extends Phaser.Scene
     private hp: number;
     private points: number;
 
+    private mapaNivel: Phaser.Tilemaps.Tilemap;
+    private conjuntoPatrones: Phaser.Tilemaps.Tileset;
+    private capaMapaNivel: Phaser.Tilemaps.TilemapLayer;
+
     constructor ()
     {
         super(Constant.SCENE.NIVEL1);
@@ -61,5 +65,10 @@ export default class Nivel1 extends Phaser.Scene
             this.registry.set(Constant.REGIS.POINTS, this.points);
             this.events.emit(Constant.EVENTOS.POINTS);
         });
+
+        // Cargamos tilemap
+        this.mapaNivel = this.make.tilemap({ key: Constant.MAPS.NIVEL1.TILEMAPJSON, tileWidth: 16, tileHeight: 16});
+        this.conjuntoPatrones = this.mapaNivel.addTilesetImage(Constant.MAPS.TILESET);
+        this.capaMapaNivel = this.mapaNivel.createLayer(Constant.MAPS.NIVEL1.PLATFORM_CAP, this.conjuntoPatrones);
     }
 }

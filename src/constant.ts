@@ -12,11 +12,19 @@ const Constant = {
     SCENE: {
         MENU: 'Menu',
         NIVEL1: 'Nivel1',
-        HUD: 'HUD'
+        HUD: 'HUD',
+        PRELOAD: 'Preload'
     },
     REGIS: {
         HP: 'hp',
         POINTS: 'points'
+    },
+    MAPS: {
+        NIVEL1:{
+            TILEMAPJSON: 'mapNivel1',
+            PLATFORM_CAP: 'Plataformas'
+        },
+        TILESET: 'levelstileset'
     }
 }
 

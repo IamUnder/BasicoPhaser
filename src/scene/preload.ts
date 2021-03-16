@@ -1,3 +1,5 @@
+import Constant from '../constant';
+
 export default class Preload extends Phaser.Scene{
 
     // Barra de carga
@@ -6,7 +8,7 @@ export default class Preload extends Phaser.Scene{
     private barraProgreso: Phaser.GameObjects.Graphics;
 
     constructor(){
-        super('Preload');
+        super(Constant.SCENE.PRELOAD);
     }
 
     preload(): void{
@@ -33,15 +35,17 @@ export default class Preload extends Phaser.Scene{
         this.load.on(
             'complete',
             function() {
-                this.scene.start('Menu');
+                this.scene.start(Constant.SCENE.MENU);
             },
             this
         );
         
         // Carga de archivos, con un bucle para ver el funcionamiento
-        for (let i = 0; i < 1000; i++) {
-            this.load.image('logo' + i, 'assets/phaser3-logo.png');
-        }
+        
+        this.load.image('logo1', 'assets/phaser3-logo.png');
+        this.load.tilemapTiledJSON(Constant.MAPS.NIVEL1.TILEMAPJSON, 'assets/levels/nivel1.json');
+        this.load.image(Constant.MAPS.TILESET,'assets/levels/levelstileset.png')
+        
     }
 
     // Metodo para crear las barras de carga
