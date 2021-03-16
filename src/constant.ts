@@ -25,6 +25,9 @@ const Constant = {
             PLATFORM_CAP: 'Plataformas'
         },
         TILESET: 'levelstileset'
+    },
+    BACKGROUD: {
+        NIVEL1: 'Brown'
     }
 }
 

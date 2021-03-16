@@ -44,7 +44,9 @@ export default class Preload extends Phaser.Scene{
         
         this.load.image('logo1', 'assets/phaser3-logo.png');
         this.load.tilemapTiledJSON(Constant.MAPS.NIVEL1.TILEMAPJSON, 'assets/levels/nivel1.json');
-        this.load.image(Constant.MAPS.TILESET,'assets/levels/levelstileset.png')
+        this.load.image(Constant.MAPS.TILESET,'assets/levels/levelstileset.png');
+
+        this.load.image(Constant.BACKGROUD.NIVEL1,'assets/img/background/Brown.png');
         
     }
 

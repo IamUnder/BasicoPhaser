@@ -12,6 +12,8 @@ export default class Nivel1 extends Phaser.Scene
     private conjuntoPatrones: Phaser.Tilemaps.Tileset;
     private capaMapaNivel: Phaser.Tilemaps.TilemapLayer;
 
+    private background: Phaser.GameObjects.TileSprite;
+
     constructor ()
     {
         super(Constant.SCENE.NIVEL1);
@@ -22,6 +24,8 @@ export default class Nivel1 extends Phaser.Scene
         this.height = this.cameras.main.height;
         this.hp = 3;
         this.points = 0;
+
+        this.registry.set(Constant.REGIS.HP,3);
     }
 
     preload ()
@@ -70,5 +74,21 @@ export default class Nivel1 extends Phaser.Scene
         this.mapaNivel = this.make.tilemap({ key: Constant.MAPS.NIVEL1.TILEMAPJSON, tileWidth: 16, tileHeight: 16});
         this.conjuntoPatrones = this.mapaNivel.addTilesetImage(Constant.MAPS.TILESET);
         this.capaMapaNivel = this.mapaNivel.createLayer(Constant.MAPS.NIVEL1.PLATFORM_CAP, this.conjuntoPatrones);
+
+        // Cargamos el fondo
+        this.background = this.add.tileSprite(0,0,this.mapaNivel.widthInPixels,this.mapaNivel.heightInPixels, Constant.BACKGROUD.NIVEL1).setOrigin(0,0).setDepth(-1);
+    }
+
+    update(): void{
+        // Animar el fondo
+        this.background.tilePositionY -= 0.4;
+
+        //Si nos quedamos sin vidas volvemos al menu
+        if (parseInt(this.registry.get(Constant.REGIS.HP)) === 0) {
+            this.scene.stop(Constant.SCENE.NIVEL1);
+            this.scene.stop(Constant.SCENE.HUD);
+            this.scene.start(Constant.SCENE.MENU);
+        }
     }
 }
+
