@@ -56,6 +56,9 @@ export default class Preload extends Phaser.Scene{
 
         this.load.json(Constant.FONT.JSON, 'assets/fuentes/fuente.json');
         this.load.image(Constant.FONT.IMAGEN, 'assets/fuentes/imagenFuente.png');
+
+        // Jugador 
+        this.load.atlas(Constant.PLAYER.ID,'assets/player/player.png','assets/player/player.json');
         
     }
 
