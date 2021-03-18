@@ -4,7 +4,7 @@ const Constant = {
         POINTS: 'changepoints'
     },
     MENU: {
-        JUGAR: 'Jugar'
+        JUGAR: 'JUGAR'
     },
     HUD: {
         HP: 'HP: '
@@ -28,6 +28,11 @@ const Constant = {
     },
     BACKGROUD: {
         NIVEL1: 'Brown'
+    },
+    FONT: {
+        JSON: 'fuenteJSON',
+        IMAGEN: 'imagenFuente',
+        BITMAP: 'fuentePixel'
     }
 }
 

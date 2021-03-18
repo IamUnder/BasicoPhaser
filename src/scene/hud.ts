@@ -2,8 +2,8 @@ import Constant from '../constant';
 
 export default class HUD extends Phaser.Scene{
 
-    private hpTxT: Phaser.GameObjects.Text;
-    private pointsTxT: Phaser.GameObjects.Text;
+    private hpTxT: Phaser.GameObjects.BitmapText;
+    private pointsTxT: Phaser.GameObjects.BitmapText;
 
     private witdh: number;
     private height: number;
@@ -23,18 +23,20 @@ export default class HUD extends Phaser.Scene{
         nivel1.events.on(Constant.EVENTOS.HP, this.updatehp , this);
         nivel1.events.on(Constant.EVENTOS.POINTS, this.updatepoints , this);
 
-        this.hpTxT = this.add.text(
+        this.hpTxT = this.add.bitmapText(
             20,
             20,
+            Constant.FONT.BITMAP,
             'HP: 3',
-            {fontSize:'32px',color:'#FFFFFF'}
+            32
         );
 
-        this.pointsTxT = this.add.text(
-            this.witdh - 50,
+        this.pointsTxT = this.add.bitmapText(
+            this.witdh - 70,
             20,
+            Constant.FONT.BITMAP,
             '000',
-            {fontSize:'20px',color:'#FFFFFF'}
+            20
         );
     }
 

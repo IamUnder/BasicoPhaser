@@ -1,3 +1,4 @@
+import { RIGHT } from 'phaser';
 import Constant from '../constant';
 
 export default class Preload extends Phaser.Scene{
@@ -34,7 +35,12 @@ export default class Preload extends Phaser.Scene{
         // Listener para cuando se hayan cargado todos lo assets
         this.load.on(
             'complete',
-            function() {
+            () => {
+                // Crea la fuente
+                const fontJSON = this.cache.json.get(Constant.FONT.JSON);
+                this.cache.bitmapFont.add(Constant.FONT.BITMAP, Phaser.GameObjects.RetroFont.Parse(this, fontJSON));
+
+                // Carga menu
                 this.scene.start(Constant.SCENE.MENU);
             },
             this
@@ -47,6 +53,9 @@ export default class Preload extends Phaser.Scene{
         this.load.image(Constant.MAPS.TILESET,'assets/levels/levelstileset.png');
 
         this.load.image(Constant.BACKGROUD.NIVEL1,'assets/img/background/Brown.png');
+
+        this.load.json(Constant.FONT.JSON, 'assets/fuentes/fuente.json');
+        this.load.image(Constant.FONT.IMAGEN, 'assets/fuentes/imagenFuente.png');
         
     }
 

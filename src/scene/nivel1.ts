@@ -37,18 +37,20 @@ export default class Nivel1 extends Phaser.Scene
     {
         const logo = this.add.image(400, 70, 'logo1');
         
-        const jugarTxT: Phaser.GameObjects.Text = this.add.text(
+        const jugarTxT: Phaser.GameObjects.BitmapText = this.add.bitmapText(
             50,
             this.height/2,
-            Constant.SCENE.NIVEL1,
-            {fontSize:'32px',color:'#FFFFFF'}
+            Constant.FONT.BITMAP,
+            'NIVEL 1',
+            32
         );
 
-        const hpTxT: Phaser.GameObjects.Text = this.add.text(
+        const hpTxT: Phaser.GameObjects.BitmapText = this.add.bitmapText(
             this.witdh/2,
             this.height/2,
+            Constant.FONT.BITMAP,
             'HP --',
-            {fontSize:'32px',color:'#FFFFFF'}
+            32
         ).setInteractive();
 
         hpTxT.on('pointerdown', ()=>{
@@ -57,11 +59,12 @@ export default class Nivel1 extends Phaser.Scene
             this.events.emit(Constant.EVENTOS.HP);
         });
 
-        const pointsTxT: Phaser.GameObjects.Text = this.add.text(
+        const pointsTxT: Phaser.GameObjects.BitmapText = this.add.bitmapText(
             this.witdh/2,
             this.height/2 + 100,
+            Constant.FONT.BITMAP,
             'Points ++',
-            {fontSize:'32px',color:'#FFFFFF'}
+            32
         ).setInteractive();
 
         pointsTxT.on('pointerdown', () =>{

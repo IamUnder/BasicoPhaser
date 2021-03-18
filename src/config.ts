@@ -8,7 +8,8 @@ const config = {
     backgroundColor: '#125555',
     width: 800,
     height: 600,
-    scene: [Preload, Menu, Nivel1, HUD]
+    scene: [Preload, Menu, Nivel1, HUD],
+    pixelArt: true
 };
 
 export default config;
