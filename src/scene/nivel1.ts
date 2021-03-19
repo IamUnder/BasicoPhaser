@@ -1,4 +1,5 @@
 import Constant from '../constant';
+import Player from '../gameObjects/player'
 
 export default class Nivel1 extends Phaser.Scene
 {
@@ -14,12 +15,10 @@ export default class Nivel1 extends Phaser.Scene
 
     private background: Phaser.GameObjects.TileSprite;
 
-    private player: Phaser.Physics.Arcade.Sprite;
+    private player: Player;
 
-    // Controles
-    private cursores: Phaser.Types.Input.Keyboard.CursorKeys;
-    private wasd: any;
-    private space: Phaser.Input.Keyboard.Key;
+    
+    
 
     constructor ()
     {
@@ -107,16 +106,18 @@ export default class Nivel1 extends Phaser.Scene
 
         // Creamos el jugador
         
-        this.player = this.physics.add.sprite(80,80, Constant.PLAYER.ID).play(Constant.PLAYER.ANIMACION.WAIT,true);
+        this.player = new Player({
+            escena: this,
+            x: 80,
+            y: 80,
+            texture: Constant.PLAYER.ID
+        });
 
-        this.physics.add.collider(this.player, this.capaMapaNivel)
         
-        this.player.body.setSize(20,30);
+        this.physics.add.collider(this.player, this.capaMapaNivel)
+       
 
-        // Controles
-        this.cursores = this.input.keyboard.createCursorKeys();
-        this.wasd = this.input.keyboard.addKey('W,A,S,D');
-        this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        
     }
 
     update(): void{
@@ -130,26 +131,7 @@ export default class Nivel1 extends Phaser.Scene
             this.scene.start(Constant.SCENE.MENU);
         }
 
-        // Control de movimiento
-            // this.wasd.A.isDown || 
-        if (this.cursores.left.isDown) {
-            this.player.setVelocityX(-200);
-            this.player.flipX = true;
-            if (this.player.body.blocked.down) this.player.anims.play(Constant.PLAYER.ANIMACION.RUN, true);
-        }else if (this.cursores.right.isDown){
-            this.player.setVelocityX(200);
-            this.player.flipX = false;
-            if (this.player.body.blocked.down) this.player.anims.play(Constant.PLAYER.ANIMACION.RUN, true);
-        }else{
-            this.player.setVelocityX(0);
-            this.player.anims.play(Constant.PLAYER.ANIMACION.WAIT, true);
-        }
-
-        if ((this.space.isDown || this.cursores.up.isDown) && this.player.body.blocked.down) {
-            this.player.setVelocityY(-300);
-            this.player.anims.stop();
-            this.player.setTexture(Constant.PLAYER.ID, Constant.PLAYER.ANIMACION.JUMP);
-        }
+        this.player.update();
     }
 }
 
