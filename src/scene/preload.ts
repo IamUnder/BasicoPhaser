@@ -32,7 +32,7 @@ export default class Preload extends Phaser.Scene{
             this
         );
 
-        // Listener para cuando se hayan cargado todos lo assets
+        // Listener para cuando se hayan cargado todos los assets 
         this.load.on(
             'complete',
             () => {
@@ -46,19 +46,22 @@ export default class Preload extends Phaser.Scene{
             this
         );
         
+        // Path de la carga de ficheros
+        this.load.path = 'assets/';
+
         // Carga de archivos, con un bucle para ver el funcionamiento
         
-        this.load.image('logo1', 'assets/phaser3-logo.png');
-        this.load.tilemapTiledJSON(Constant.MAPS.NIVEL1.TILEMAPJSON, 'assets/levels/nivel1.json');
-        this.load.image(Constant.MAPS.TILESET,'assets/levels/levelstileset.png');
+        this.load.image('logo1', 'phaser3-logo.png');
+        this.load.tilemapTiledJSON(Constant.MAPS.NIVEL1.TILEMAPJSON, 'levels/nivel1.json');
+        this.load.image(Constant.MAPS.TILESET,'levels/levelstileset.png');
 
-        this.load.image(Constant.BACKGROUD.NIVEL1,'assets/img/background/Brown.png');
+        this.load.image(Constant.BACKGROUD.NIVEL1,'img/background/Brown.png');
 
-        this.load.json(Constant.FONT.JSON, 'assets/fuentes/fuente.json');
-        this.load.image(Constant.FONT.IMAGEN, 'assets/fuentes/imagenFuente.png');
+        this.load.json(Constant.FONT.JSON, 'fuentes/fuente.json');
+        this.load.image(Constant.FONT.IMAGEN, 'fuentes/imagenFuente.png');
 
         // Jugador 
-        this.load.atlas(Constant.PLAYER.ID,'assets/player/player.png','assets/player/player.json');
+        this.load.atlas(Constant.PLAYER.ID,'player/ninjafrog.png','player/ninjafrog.json');
         
     }
 

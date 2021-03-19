@@ -35,7 +35,12 @@ const Constant = {
         BITMAP: 'fuentePixel'
     },
     PLAYER: {
-        ID: 'Jugador'
+        ID: 'Jugador',
+        ANIMACION: {
+            WAIT: 'idle',
+            RUN: 'run',
+            JUMP: 'jump-0'
+        }
     }
 }
 

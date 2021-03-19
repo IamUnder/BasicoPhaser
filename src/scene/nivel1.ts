@@ -14,6 +14,8 @@ export default class Nivel1 extends Phaser.Scene
 
     private background: Phaser.GameObjects.TileSprite;
 
+    private player: Phaser.Physics.Arcade.Sprite;
+
     constructor ()
     {
         super(Constant.SCENE.NIVEL1);
@@ -63,7 +65,7 @@ export default class Nivel1 extends Phaser.Scene
             this.witdh/2,
             this.height/2 + 100,
             Constant.FONT.BITMAP,
-            'Points ++',
+            'POINTS ++',
             32
         ).setInteractive();
 
@@ -77,9 +79,25 @@ export default class Nivel1 extends Phaser.Scene
         this.mapaNivel = this.make.tilemap({ key: Constant.MAPS.NIVEL1.TILEMAPJSON, tileWidth: 16, tileHeight: 16});
         this.conjuntoPatrones = this.mapaNivel.addTilesetImage(Constant.MAPS.TILESET);
         this.capaMapaNivel = this.mapaNivel.createLayer(Constant.MAPS.NIVEL1.PLATFORM_CAP, this.conjuntoPatrones);
+        // Ponemos colisiones al mapa
+        this.capaMapaNivel.setCollisionByExclusion([-1]);
 
         // Cargamos el fondo
         this.background = this.add.tileSprite(0,0,this.mapaNivel.widthInPixels,this.mapaNivel.heightInPixels, Constant.BACKGROUD.NIVEL1).setOrigin(0,0).setDepth(-1);
+    
+        // Animaciones
+        this.anims.create({
+            key: Constant.PLAYER.ANIMACION.WAIT,
+            frames: this.anims.generateFrameNames(Constant.PLAYER.ID,{prefix: Constant.PLAYER.ANIMACION.WAIT + '-', end:10}),
+            frameRate: 20,
+            repeat: -1
+        });
+
+        // Creamos el jugador
+        
+        this.player = this.physics.add.sprite(80,80, Constant.PLAYER.ID).play(Constant.PLAYER.ANIMACION.WAIT,true);
+
+        this.physics.add.collider(this.player, this.capaMapaNivel)
     }
 
     update(): void{
